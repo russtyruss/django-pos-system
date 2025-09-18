@@ -1,0 +1,56 @@
+{% extends 'pos_app/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Welcome, {{ user.username }} ({{ user.profile.role|title }})</h2>
+    
+    {% if user.profile.role == 'admin' %}
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <p>{{ total_users }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Active Users</h3>
+                <p>{{ active_users }}</p>
+            </div>
+        </div>
+    {% endif %}
+    
+    {% if user.profile.role == 'manager' %}
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Daily Sales</h3>
+                <p>${{ daily_sales }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Weekly Sales</h3>
+                <p>${{ weekly_sales }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Monthly Sales</h3>
+                <p>${{ monthly_sales }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Sales</h3>
+                <p>${{ total_sales }}</p>
+            </div>
+        </div>
+    {% endif %}
+    
+    {% if user.profile.role == 'teller' %}
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Today's Sales</h3>
+                <p>${{ today_sales }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Today's Transactions</h3>
+                <p>{{ today_transactions }}</p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

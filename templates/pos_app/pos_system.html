@@ -1,0 +1,53 @@
+{% extends 'pos_app/base.html' %}
+
+{% block title %}POS System{% endblock %}
+
+{% block content %}
+<div class="pos-container">
+    <h2>Point of Sale System</h2>
+    
+    <div class="pos-layout">
+        <div class="products-section">
+            <h3>Available Products</h3>
+            <div class="products-grid">
+                {% for product in products %}
+                <div class="product-card">
+                    <h4>{{ product.name }}</h4>
+                    <p>{{ product.description }}</p>
+                    <p class="price">${{ product.price }}</p>
+                    <div class="quantity-control">
+                        <label for="product_{{ product.id }}">Quantity:</label>
+                        <input type="number" id="product_{{ product.id }}" name="product_{{ product.id }}" min="0" value="0">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="checkout-section">
+            <h3>Checkout</h3>
+            <form method="post" id="checkout-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="customer_name">Customer Name</label>
+                    {{ form.customer_name }}
+                </div>
+                <div class="form-group">
+                    <label for="payment_method">Payment Method</label>
+                    {{ form.payment_method }}
+                </div>
+                
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div id="order-items"></div>
+                    <div class="total-amount">
+                        <strong>Total: $<span id="total-amount">0.00</span></strong>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-large">Complete Transaction</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
