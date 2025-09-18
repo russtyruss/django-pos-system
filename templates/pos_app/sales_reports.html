@@ -1,0 +1,97 @@
+{% extends 'pos_app/base.html' %}
+
+{% block title %}Sales Reports{% endblock %}
+
+{% block content %}
+<div class="reports-container">
+    <h2>Sales Reports</h2>
+    
+    <div class="report-section">
+        <h3>Daily Sales</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Teller</th>
+                    <th>Total Sales</th>
+                    <th>Transaction Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in daily_sales %}
+                <tr>
+                    <td>{{ sale.teller__username }}</td>
+                    <td>${{ sale.total_sales }}</td>
+                    <td>{{ sale.transaction_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="report-section">
+        <h3>Weekly Sales</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Teller</th>
+                    <th>Total Sales</th>
+                    <th>Transaction Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in weekly_sales %}
+                <tr>
+                    <td>{{ sale.teller__username }}</td>
+                    <td>${{ sale.total_sales }}</td>
+                    <td>{{ sale.transaction_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="report-section">
+        <h3>Monthly Sales</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Teller</th>
+                    <th>Total Sales</th>
+                    <th>Transaction Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in monthly_sales %}
+                <tr>
+                    <td>{{ sale.teller__username }}</td>
+                    <td>${{ sale.total_sales }}</td>
+                    <td>{{ sale.transaction_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="report-section">
+        <h3>All-Time Sales</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Teller</th>
+                    <th>Total Sales</th>
+                    <th>Transaction Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in all_time_sales %}
+                <tr>
+                    <td>{{ sale.teller__username }}</td>
+                    <td>${{ sale.total_sales }}</td>
+                    <td>{{ sale.transaction_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

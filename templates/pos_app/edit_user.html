@@ -1,0 +1,41 @@
+{% extends 'pos_app/base.html' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Edit User</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="{{ u_form.username.id_for_label }}">Username</label>
+                {{ u_form.username }}
+            </div>
+            <div class="form-group">
+                <label for="{{ u_form.email.id_for_label }}">Email</label>
+                {{ u_form.email }}
+            </div>
+            <div class="form-group">
+                <label for="{{ u_form.first_name.id_for_label }}">First Name</label>
+                {{ u_form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ u_form.last_name.id_for_label }}">Last Name</label>
+                {{ u_form.last_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ p_form.role.id_for_label }}">Role</label>
+                {{ p_form.role }}
+            </div>
+            <div class="form-group">
+                <label for="{{ p_form.is_active.id_for_label }}">Active</label>
+                {{ p_form.is_active }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update User</button>
+        <a href="{% url 'user_management' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
